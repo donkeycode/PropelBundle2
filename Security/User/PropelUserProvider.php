@@ -60,7 +60,12 @@ class PropelUserProvider implements UserProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function loadUserByUsername($username)
+    public function loadUserByUsername(string $username): UserInterface
+    {
+        return $this->loadUserByIdentifier($username);
+    }
+
+    public function loadUserByIdentifier($username): UserInterface
     {
         $queryClass = $this->queryClass;
         $query      = $queryClass::create();
